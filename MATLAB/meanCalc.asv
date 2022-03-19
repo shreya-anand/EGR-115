@@ -1,0 +1,5 @@
+function courseAvg = meanCalc(gradeData)
+    
+    
+    
+end
