@@ -6,13 +6,10 @@ clear, clc
 % Create and draw object sun
 sun = PlanetaryObject(0, 0, 0.5, 'y');
 
-
 % Create and draw object planet
 planet = PlanetaryObject(3, 0, 0.2, 'g');
 universe = Universe(sun, planet);
 startPage(universe)
-
-
 
 
 

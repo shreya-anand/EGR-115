@@ -20,8 +20,9 @@ classdef PlanetaryObject < handle
             obj.deltaTheta = 0;
         end
 
-        function changeColor(planet)
-            planet.color = 'b';
+        function changeColor(planet, color)
+            
+            planet.color = ';
             draw(planet)
 
         end
@@ -29,6 +30,13 @@ classdef PlanetaryObject < handle
         function increaseRadius(planet)
             hide(planet)
             planet.radius = planet.radius + 0.1;
+            draw(planet)
+
+        end
+
+        function decreaseRadius(planet)
+            hide(planet)
+            planet.radius = planet.radius - 0.1;
             draw(planet)
 
         end
@@ -85,7 +93,6 @@ classdef PlanetaryObject < handle
                 pause(0.1);
 
             end
-
 
         end
 

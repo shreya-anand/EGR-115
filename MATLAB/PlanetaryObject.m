@@ -20,8 +20,8 @@ classdef PlanetaryObject < handle
             obj.deltaTheta = 0;
         end
 
-        function changeColor(planet)
-            planet.color = 'b';
+        function changeColor(planet, color)
+            planet.color = color;
             draw(planet)
 
         end

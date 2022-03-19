@@ -20,10 +20,11 @@ classdef Universe
             objPlanet = obj.planet;
         end
 
-        function changePlanetColor(obj)
+        function changePlanetColor(obj, color)
+            fprintf(color)
             p = getPlanet(obj);
-            changeColor(p)
-            
+            changeColor(p, color)
+
         end
 
         function startUniverse(obj)
