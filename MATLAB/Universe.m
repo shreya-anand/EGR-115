@@ -10,14 +10,17 @@ classdef Universe
         function obj = Universe(s, p)
             obj.sun = s;
             obj.planet = p;
+
         end
 
         function objSun = getSun(obj)
             objSun = obj.sun;
+
         end
 
         function objPlanet = getPlanet(obj)
             objPlanet = obj.planet;
+
         end
 
         function changePlanetColor(obj, color)
@@ -36,6 +39,7 @@ classdef Universe
             axis([-6 5 -7 7])
             axis equal
             orbit(p, s)
+            
         end
 
         function increasePlanetRadius(obj)

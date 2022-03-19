@@ -48,24 +48,24 @@ classdef PlanetaryObject < handle
             xDistance = planet.xCoordinate - sun.xCoordinate; 
             yDistance = planet.yCoordinate - sun.yCoordinate; 
             rad = sqrt(xDistance^2 + yDistance^2);
-            newRad = rad + 0.01;
+            newRad = rad + 0.1;
             planet.xCoordinate = newRad * cos(planet.deltaTheta);
-            planet.yCoordinate = newRad * cos(planet.deltaTheta);
+            planet.yCoordinate = newRad * sin(planet.deltaTheta);
             draw(planet)
 
         end
 
         function decreaseOrbitRadius(planet, sun)
-            % Increase the distance from the sun to the planet
+            % Decrease the distance from the sun to the planet
             hide(planet)
             xDistance = planet.xCoordinate - sun.xCoordinate; 
             yDistance = planet.yCoordinate - sun.yCoordinate; 
             rad = sqrt(xDistance^2 + yDistance^2);
-            newRad = rad - 0.01;
-            planet.xCoordinate = newRad * cos(planet.deltaTheta);
-            planet.yCoordinate = newRad * cos(planet.deltaTheta);
+            rad = rad - 0.1;
+            planet.xCoordinate = rad * cos(planet.deltaTheta);
+            planet.yCoordinate = rad * sin(planet.deltaTheta);
             draw(planet)
-            
+
         end
     
         function draw(obj)
@@ -119,6 +119,8 @@ classdef PlanetaryObject < handle
                 pause(0.1);
 
             end
+
+            obj.deltaTheta = 0;
 
         end
 
