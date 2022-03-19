@@ -3,6 +3,7 @@ clear, clc
 
 % Create a pop-up to ask for information about the planet
 
+
 % Create and draw object sun
 sun = PlanetaryObject(0, 0, 0.5, 'y');
 

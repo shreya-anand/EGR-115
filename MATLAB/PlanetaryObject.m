@@ -10,7 +10,6 @@ classdef PlanetaryObject < handle
     end
 
     methods
-        
         function obj = PlanetaryObject(x, y, r, c)
             % Purpose: 
             obj.xCoordinate = x;
@@ -21,12 +20,14 @@ classdef PlanetaryObject < handle
         end
 
         function changeColor(planet, color)
+            % Purpose: change the color of the planet
             planet.color = color;
             draw(planet)
 
         end
 
         function increaseRadius(planet)
+            % Purpose: Increase the radius of the planet
             hide(planet)
             planet.radius = planet.radius + 0.1;
             draw(planet)
@@ -34,15 +35,41 @@ classdef PlanetaryObject < handle
         end
 
         function decreaseRadius(planet)
+            % Pupose: Decrease the radius of the planet
             hide(planet)
             planet.radius = planet.radius - 0.1;
             draw(planet)
 
         end
+
+        function increaseOrbitRadius(planet, sun)
+            % Increase the distance from the sun to the planet
+            hide(planet)
+            xDistance = planet.xCoordinate - sun.xCoordinate; 
+            yDistance = planet.yCoordinate - sun.yCoordinate; 
+            rad = sqrt(xDistance^2 + yDistance^2);
+            newRad = rad + 0.01;
+            planet.xCoordinate = newRad * cos(planet.deltaTheta);
+            planet.yCoordinate = newRad * cos(planet.deltaTheta);
+            draw(planet)
+
+        end
+
+        function decreaseOrbitRadius(planet, sun)
+            % Increase the distance from the sun to the planet
+            hide(planet)
+            xDistance = planet.xCoordinate - sun.xCoordinate; 
+            yDistance = planet.yCoordinate - sun.yCoordinate; 
+            rad = sqrt(xDistance^2 + yDistance^2);
+            newRad = rad - 0.01;
+            planet.xCoordinate = newRad * cos(planet.deltaTheta);
+            planet.yCoordinate = newRad * cos(planet.deltaTheta);
+            draw(planet)
+            
+        end
     
         function draw(obj)
             % Purpose: draw the object
-            % fprintf('Draw: %.2f, %.2f\n', obj.xCoordinate, obj.yCoordinate);
             center = [obj.xCoordinate obj.yCoordinate]; % Center 
             theta = linspace(0, 2 * pi); % Theta
 
@@ -69,7 +96,6 @@ classdef PlanetaryObject < handle
             % Purpose: move object along circular orbit
             for i = 1:50
                 hide(obj) % Hide previous state of object
-                % fprintf('Orbit: %.2f, %.2f\n', obj.xCoordinate, obj.yCoordinate);
 
                 % Coordinates to draw planet
                 xDistance = obj.xCoordinate - sun.xCoordinate; 
@@ -77,10 +103,10 @@ classdef PlanetaryObject < handle
                 rad = sqrt(xDistance^2 + yDistance^2); % radius of orbit
 
                 obj.deltaTheta = obj.deltaTheta + pi / 25; % Increment theta
+
                 % New coordinates of planet
                 newY = rad * sin(obj.deltaTheta); 
                 newX = rad * cos(obj.deltaTheta); 
-                % fprintf('new x and y: %.2f, %.2f\n', newX, newY);
 
                 % Set new coordinates to object coordinates
                 obj.yCoordinate = newY;
@@ -88,6 +114,7 @@ classdef PlanetaryObject < handle
 
                 % Draw object
                 draw(obj)
+
                 % Time delay
                 pause(0.1);
 

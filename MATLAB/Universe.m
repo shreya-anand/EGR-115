@@ -21,7 +21,6 @@ classdef Universe
         end
 
         function changePlanetColor(obj, color)
-            fprintf(color)
             p = getPlanet(obj);
             changeColor(p, color)
 
@@ -48,6 +47,20 @@ classdef Universe
         function decreasePlanetRadius(obj)
             p = getPlanet(obj);
             decreaseRadius(p);
+
+        end
+
+        function increaseDistance(obj)
+            p = getPlanet(obj);
+            s = getSun(obj);
+            increaseOrbitRadius(p, s);
+
+        end
+
+        function decreaseDistance(obj)
+            p = getPlanet(obj);
+            s = getSun(obj);
+            decreaseOrbitRadius(p, s);
 
         end
 
